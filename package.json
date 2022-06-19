@@ -1,8 +1,18 @@
 {
   "name": "vue-dragmodal",
   "description": "Vue dragable modal component",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "keywords": ["vue","vue-modal","modal","dragable-modal","dragable"],
+  "homepage": "https://github.com/khnbzkrt/vue-dragmodal",
+  "license": "ISC",
+  "author": {
+    "name": "Hakan Angın",
+    "email": "khan.bozkurt@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/khnbzkrt/vue-dragmodal"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
