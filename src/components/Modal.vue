@@ -6,7 +6,12 @@
     ref="modal"
     :style="state.styleObject"
   >
-    <div class="modal-content md" :class="size">
+    <div
+      class="modal-content md"
+      :class="size"
+      @mousedown="modalSelected"
+      ref="modalContent"
+    >
       <div class="modal-header">
         <div v-if="typeof modalTitle == 'object'">
           <component :is="modalTitle" />
@@ -19,10 +24,25 @@
           v-if="typeof modalTitle == 'undefined'"
           modalTitle="Modal Title"
         ></default-header>
-        <span class="modal-close" @click="closeModal">x</span>
+        <span class="modal-close" @click="closeModal"
+          ><i class="fas fa-times"></i
+        ></span>
       </div>
-      <div class="modal-body">Body</div>
-      <div class="modal-footer">Footer</div>
+      <div class="modal-body">
+        <div v-if="typeof modalBody == 'object'">
+          <component :is="modalBody" />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div v-if="typeof modalFooter == 'object'">
+          <component :is="modalFooter" />
+        </div>
+        <default-footer
+          v-if="typeof modalFooter == 'undefined'"
+          :onCancel="closeModal"
+          :onSubmit="submitModal"
+        ></default-footer>
+      </div>
     </div>
   </div>
 </template>
@@ -30,12 +50,15 @@
 <script setup>
 import DefaultHeader from "./DefaultHeader.vue";
 import { defineProps, reactive, ref } from "vue";
+import DefaultFooter from "./DefaultFooter.vue";
 const modal = ref();
+const modalContent = ref();
 
 const state = reactive({
   styleObject: {
-    "--opacity": props.bgOpacity ? props.bgOpacity : 0.5,
+    "--opacity": props.bgOpacity != "undefined" ? props.bgOpacity : 0.5,
     "--bg-color": props.bgColor ? props.bgColor : "#333",
+    "--cursor-move": props.isDragable ? "move" : "normal",
   },
 });
 
@@ -46,10 +69,18 @@ const props = defineProps({
   bgColor: String,
   bgOpacity: Number,
   modalTitle: Object | String,
+  modalFooter: Object,
+  modalBody: Object,
+  onSubmit: Function,
+  isDragable: Boolean,
 });
 
 const closeModal = (event) => {
-  if (event.target.className == "modal-close") {
+  if (event.target.className.indexOf("fa-times") > -1) {
+    modal.value.classList.remove("isOpen");
+  }
+
+  if (event.target.className == "cancel") {
     modal.value.classList.remove("isOpen");
   }
 
@@ -58,6 +89,26 @@ const closeModal = (event) => {
     props.bgCloseEvent == true
   ) {
     modal.value.classList.remove("isOpen");
+  }
+};
+
+const submitModal = () => {
+  if (typeof props.onSubmit == "function") {
+    props.onSubmit();
+  }
+};
+
+const modalMove = (e) => {
+  modalContent.value.style.left = e.clientX + "px";
+  modalContent.value.style.top = e.clientY + "px";
+};
+
+const modalSelected = (e) => {
+  if (props.isDragable) {
+    document.body.addEventListener("mousemove", modalMove);
+    document.body.addEventListener("mouseup", function () {
+      document.body.removeEventListener("mousemove", modalMove);
+    });
   }
 };
 </script>
@@ -70,8 +121,7 @@ const closeModal = (event) => {
   bottom: 0;
   right: 0;
   display: none;
-  justify-content: center;
-  align-items: center;
+  overflow: hidden;
 }
 
 .modal:after {
@@ -87,9 +137,17 @@ const closeModal = (event) => {
 
 .modal .modal-content {
   background: #fff;
-  padding: 40px;
-  position: relative;
+  padding: 20px 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 1;
+  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.1);
+}
+
+.modal .modal-content:hover {
+  cursor: var(--cursor-move);
 }
 
 .modal .modal-content.md {
@@ -129,15 +187,28 @@ const closeModal = (event) => {
   cursor: pointer;
   font-weight: bold;
   color: #333;
-  font-size: 22px;
+  font-size: 18px;
 }
 
 .modal .modal-content .modal-body {
   padding: 20px 0px;
 }
 
-.modal .modal-content .modal-footer {
-  padding: 20px 0px;
+.modal .modal-content .modal-footer .cancel,
+.submit {
+  outline: none;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.modal .modal-content .modal-footer .cancel {
+  background: #ddd;
+  margin-right: 3px;
+}
+
+.modal .modal-content .modal-footer .submit {
+  background: rgb(136, 235, 136);
 }
 
 .isOpen {

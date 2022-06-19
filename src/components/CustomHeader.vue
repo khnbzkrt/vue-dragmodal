@@ -1,5 +1,5 @@
 <template>
-  <h5>Deneme component</h5>
+  <h1>Custom Header Component</h1>
 </template>
 
 <script>

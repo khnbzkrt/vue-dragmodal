@@ -1,6 +1,7 @@
 {
-  "name": "vue-modal",
-  "version": "0.0.0",
+  "name": "vue-dragmodal",
+  "description": "Vue dragable modal component",
+  "version": "1.0.1",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
