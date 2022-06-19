@@ -1,29 +1,63 @@
 # vue-dragmodal
 
-This template should help get you started developing with Vue 3 in Vite.
+This package is dragable modal for Vue.js
 
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
+## Setup
 
 ```sh
-npm install
+npm install vue-dragmodal
 ```
 
-### Compile and Hot-Reload for Development
+## Configs
 
-```sh
-npm run dev
+ Option | Type | Values | Description 
+ --- | --- | --- | ---
+ isOpen | boolean | `true` or `false` | If you want open the modal, you can set `true`
+size | string |  `md`, `lg`, `xl`, `xxl` or `full` | Modal width size
+bgCloseEvent | boolean | `true` or `false`| If you want to close when modal background clicked, you can set this value as `true`
+bgColor | string | `css colors`| You can set custom background color the modal
+bgOpacity | number | `number values`| You can set opacity for `bgColor`
+modalTitle | - | `string` or `vue template`| You can customize your Modal Title
+modalBody | - | `string` or `vue template`| You can customize your Modal Body
+modalFooter | - | `string` or `vue template`| You can customize your Modal Footer
+onSubmit | function | - | You can set onSubmit function for default Modal Footer buttons
+isDragable | boolean | `true` or `false` | You can activate dragable mode to Modal. Set `true` for activation
+
+## Example
+---
+``` vue
+<script setup>
+import Modal from "./components/Modal.vue";
+import CustomHeader from "./components/CustomHeader.vue";
+import CustomeFooter from "./components/CustomeFooter.vue";
+import ModalBody from "./components/ModalBody.vue";
+
+const testSubmit = () => {
+  alert("Submit success");
+};
+</script>
+
+<template>
+  <Modal
+    :is-open="true"
+    size="xl"
+    :bgCloseEvent="false"
+    :modalTitle="CustomHeader"
+    :onSubmit="testSubmit"
+    :modalBody="ModalBody"
+    :bgOpacity="0"
+    :isDragable="false"
+  />
+</template>
+
+<style>
+</style>
 ```
 
-### Compile and Minify for Production
+### Dependencies
+---
+* FontAwesome 5.15.4 (import with url your css file)
 
-```sh
-npm run build
-```
+### Keywords
+---
+modal, vue-modal, vue, dragable-modal, dragable
