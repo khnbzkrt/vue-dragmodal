@@ -7,7 +7,12 @@ This package is dragable modal for Vue.js
 ```sh
 npm install vue-dragmodal
 ```
-
+Add `main.js` file example codes:
+``` vue
+import DragModal from "vue-dragmodal";
+import "vue-dragmodal/styles.css";
+app.use(DragModal)
+```
 ## Configs
 
  Option | Type | Values | Description 
@@ -18,7 +23,7 @@ bgCloseEvent | boolean | `true` or `false`| If you want to close when modal back
 bgColor | string | `css colors`| You can set custom background color the modal
 bgOpacity | number | `number values`| You can set opacity for `bgColor`
 modalTitle | - | `string` or `vue template`| You can customize your Modal Title
-modalBody | - | `string` or `vue template`| You can customize your Modal Body
+modalBody | - | `vue template`| You can customize your Modal Body
 modalFooter | - | `string` or `vue template`| You can customize your Modal Footer
 onSubmit | function | - | You can set onSubmit function for default Modal Footer buttons
 isDragable | boolean | `true` or `false` | You can activate dragable mode to Modal. Set `true` for activation
