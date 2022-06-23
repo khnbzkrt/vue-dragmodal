@@ -3,7 +3,6 @@
 This package is dragable modal for Vue.js
 <br></br>
 ## Setup
----
 
 ```sh
 npm install vue-dragmodal
@@ -16,7 +15,6 @@ app.use(DragModal)
 ```
 <br></br>
 ## Configs
----
 
  Option | Type | Values | Description 
  --- | --- | --- | ---
@@ -33,7 +31,6 @@ isDragable | boolean | `true` or `false` | You can activate dragable mode to Mod
 
 <br></br>
 ## Example
----
 ``` javascript
 <script setup>
 
@@ -64,10 +61,8 @@ const testSubmit = () => {
 
 <br></br>
 ## Dependencies
----
 ***FontAwesome 5.15.4 (import with url your css file)***
 
 <br></br>
 ## Keywords
----
 modal, vue-modal, vue, dragable-modal, dragable
