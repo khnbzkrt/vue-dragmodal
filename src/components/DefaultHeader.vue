@@ -13,4 +13,8 @@ defineProps({
 </script>
 
 <style>
+.modal-title {
+  width: 100%;
+  color: rgb(99, 96, 96);
+}
 </style>

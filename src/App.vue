@@ -9,7 +9,7 @@ const testSubmit = () => {
 </script>
 
 <template>
-  <drag-modal :is-open="true" />
+  <drag-modal :is-open="true" :modalBody="ModalBody" />
 </template>
 
 <style>

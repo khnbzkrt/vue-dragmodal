@@ -7,7 +7,7 @@
     :style="state.styleObject"
   >
     <div
-      class="modal-content md"
+      class="modal-content lg"
       :class="size"
       @mousedown="modalSelected"
       ref="modalContent"
@@ -28,10 +28,8 @@
           ><i class="fas fa-times"></i
         ></span>
       </div>
-      <div class="modal-body">
-        <div v-if="typeof modalBody == 'object'">
-          <component :is="modalBody" />
-        </div>
+      <div v-if="typeof modalBody == 'object'" class="modal-body">
+        <component :is="modalBody" />
       </div>
       <div class="modal-footer">
         <div v-if="typeof modalFooter == 'object'">
@@ -56,8 +54,8 @@ const modalContent = ref();
 
 const state = reactive({
   styleObject: {
-    "--opacity": props.bgOpacity != "undefined" ? props.bgOpacity : 0.5,
-    "--bg-color": props.bgColor ? props.bgColor : "#333",
+    "--opacity": props.bgOpacity != undefined ? props.bgOpacity : "0",
+    "--bg-color": props.bgColor ? props.bgColor : "#000",
     "--cursor-move": props.isDragable ? "move" : "normal",
   },
 });
@@ -137,13 +135,17 @@ const modalSelected = (e) => {
 
 .modal .modal-content {
   background: #fff;
-  padding: 20px 40px;
+  padding: 30px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1;
-  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: scroll;
 }
 
 .modal .modal-content:hover {
@@ -152,28 +154,29 @@ const modalSelected = (e) => {
 
 .modal .modal-content.md {
   width: 25%;
-  min-height: 10%;
+  min-height: 50vh;
 }
 
 .modal .modal-content.lg {
   width: 45%;
-  min-height: 10%;
+  min-height: 50vh;
+  max-height: 95vh;
 }
 
 .modal .modal-content.xl {
   width: 65%;
-  min-height: 10%;
+  min-height: 50vh;
 }
 
 .modal .modal-content.xxl {
   width: 85%;
-  min-height: 10%;
+  min-height: 50vh;
 }
 
 .modal .modal-content.full {
   width: 100%;
   height: 100vh;
-  min-height: 10%;
+  min-height: 50vh;
 }
 
 .modal .modal-content .modal-header {
@@ -186,29 +189,16 @@ const modalSelected = (e) => {
 .modal .modal-content .modal-header .modal-close {
   cursor: pointer;
   font-weight: bold;
-  color: #333;
+  color: rgb(156, 155, 155);
   font-size: 18px;
+}
+
+.modal .modal-content .modal-header .modal-close:hover {
+  color: rgb(105, 105, 105);
 }
 
 .modal .modal-content .modal-body {
   padding: 20px 0px;
-}
-
-.modal .modal-content .modal-footer .cancel,
-.submit {
-  outline: none;
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-}
-
-.modal .modal-content .modal-footer .cancel {
-  background: #ddd;
-  margin-right: 3px;
-}
-
-.modal .modal-content .modal-footer .submit {
-  background: rgb(136, 235, 136);
 }
 
 .isOpen {

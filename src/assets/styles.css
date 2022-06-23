@@ -1,7 +1,28 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css");
-*{
-    margin:0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+/* width */
+.modal ::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+.modal ::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+.modal ::-webkit-scrollbar-thumb {
+  background: rgb(223, 222, 222);
+}
+
+/* Handle on hover */
+.modal ::-webkit-scrollbar-thumb:hover {
+  background: rgb(185, 183, 183);
 }
