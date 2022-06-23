@@ -1,19 +1,22 @@
 # vue-dragmodal
 
 This package is dragable modal for Vue.js
-
+<br></br>
 ## Setup
+---
 
 ```sh
 npm install vue-dragmodal
 ```
 Add `main.js` file example codes:
-``` vue
+``` javascript
 import DragModal from "vue-dragmodal";
 import "vue-dragmodal/styles.css";
 app.use(DragModal)
 ```
+<br></br>
 ## Configs
+---
 
  Option | Type | Values | Description 
  --- | --- | --- | ---
@@ -28,10 +31,12 @@ modalFooter | - | `string` or `vue template`| You can customize your Modal Foote
 onSubmit | function | - | You can set onSubmit function for default Modal Footer buttons
 isDragable | boolean | `true` or `false` | You can activate dragable mode to Modal. Set `true` for activation
 
+<br></br>
 ## Example
 ---
-``` vue
+``` javascript
 <script setup>
+
 import Modal from "./components/Modal.vue";
 import CustomHeader from "./components/CustomHeader.vue";
 import CustomeFooter from "./components/CustomeFooter.vue";
@@ -40,6 +45,7 @@ import ModalBody from "./components/ModalBody.vue";
 const testSubmit = () => {
   alert("Submit success");
 };
+
 </script>
 
 <template>
@@ -54,15 +60,14 @@ const testSubmit = () => {
     :isDragable="false"
   />
 </template>
-
-<style>
-</style>
 ```
 
-### Dependencies
+<br></br>
+## Dependencies
 ---
-* FontAwesome 5.15.4 (import with url your css file)
+***FontAwesome 5.15.4 (import with url your css file)***
 
-### Keywords
+<br></br>
+## Keywords
 ---
 modal, vue-modal, vue, dragable-modal, dragable
