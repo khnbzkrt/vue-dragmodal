@@ -122,6 +122,22 @@ const modalSelected = (e) => {
   overflow: hidden;
 }
 
+.modal ::-webkit-scrollbar {
+  width: 5px;
+}
+
+.modal ::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.modal ::-webkit-scrollbar-thumb {
+  background: rgb(223, 222, 222);
+}
+
+.modal ::-webkit-scrollbar-thumb:hover {
+  background: rgb(185, 183, 183);
+}
+
 .modal:after {
   content: "";
   position: absolute;
